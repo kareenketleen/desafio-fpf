@@ -1,6 +1,36 @@
+var turns = 1;
+
 function startGame() {
   let player1 = newPlayer("Bob", true);
   let player2 = newPlayer("CPU", false);
+
+  turns = 1;
+}
+
+function play() {}
+
+function giveUp(_player, _cpu) {
+  turns = 1;
+  _player = null;
+  _cpu = null;
+  console.log("O jogador desistiu!");
+}
+
+function isPlayerDead(_player) {
+  return _player.life <= 0 ? true : false;
+}
+
+function aiCPU(_cpu, _player, _turns) {
+  if (_cpu.isHuman) {
+    console.log("Humans do not have AI");
+    return;
+  }
+
+  if (_turns % 3 == 0) {
+    _cpu.specialAttack(_cpu, _player);
+  } else {
+    _cpu.basicAttack(_cpu, _player);
+  }
 }
 
 function getScore(life, turns) {
