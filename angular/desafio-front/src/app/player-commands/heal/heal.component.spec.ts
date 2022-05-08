@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { GameModule } from 'src/app/game/game.module';
 
 import { HealComponent } from './heal.component';
 
@@ -8,9 +9,8 @@ describe('HealComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HealComponent ]
-    })
-    .compileComponents();
+      declarations: [HealComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

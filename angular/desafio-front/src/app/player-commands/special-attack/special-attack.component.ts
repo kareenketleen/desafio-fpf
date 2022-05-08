@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameModule } from 'src/app/game/game.module';
 
 @Component({
   selector: 'special-attack',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpecialAttackComponent implements OnInit {
   constructor() {}
+  actionSpecialAttack() {}
 
   ngOnInit(): void {}
 }
