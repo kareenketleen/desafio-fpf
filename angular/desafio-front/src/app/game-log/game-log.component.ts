@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'game-log',
@@ -6,7 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-log.component.css'],
 })
 export class GameLogComponent implements OnInit {
-  constructor() {}
+  static getMessages() {
+    return AppComponent.messages;
+  }
+
+  static updateMessages() {
+    AppComponent.messages = GameLogComponent.getMessages();
+  }
+
+  messages: any = GameLogComponent.getMessages();
+
+  constructor() {
+    this.messages = GameLogComponent.getMessages();
+  }
 
   ngOnInit(): void {}
 }

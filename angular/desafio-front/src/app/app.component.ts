@@ -16,6 +16,8 @@ export class AppComponent {
   static player1: any = null;
   static player2: any = null;
 
+  static messages: any[] = [];
+
   static utils: UtilsModule;
 
   static getTurns() {
@@ -53,11 +55,19 @@ export class AppComponent {
 
   static basicAttack(attacker: any, opponent: any) {
     if (!AppComponent.canPlay(attacker)) {
+      AppComponent.messages.unshift({
+        type: 0,
+        message: attacker.name + ' não pode jogar!',
+      });
       return;
     }
     console.log('Humano atacou!');
     var dano: number = AppComponent.utils.getRandom(5, 10);
     opponent.life -= dano;
+    AppComponent.messages.unshift({
+      type: 0,
+      message: attacker.name + ' causou dano: ' + '(' + dano + ')',
+    });
     console.log('Dano: ' + dano);
     console.log(AppComponent.getPlayer2());
   }
@@ -99,10 +109,27 @@ export class AppComponent {
 
   static heal(player: any) {
     if (!AppComponent.canPlay(player)) {
+      AppComponent.messages.unshift({
+        type: 2,
+        message: player.name + ' não pode jogar!',
+      });
       return;
     }
     if (player.life < 100) {
-      player.life += AppComponent.utils.getRandom(5, 15);
+      var cura = AppComponent.utils.getRandom(5, 15);
+      player.life += cura;
+
+      AppComponent.messages.unshift({
+        type: 2,
+        message: player.name + ' usou a cura: ' + '(' + cura + ')',
+      });
+    } else {
+      AppComponent.messages.unshift({
+        type: 2,
+        message: AppComponent.messages.unshift(
+          player.name + ' vida cheia! Perdeu turno.'
+        ),
+      });
     }
   }
 
@@ -115,6 +142,36 @@ export class AppComponent {
       AppComponent.cpuTurns
     );
   }
+  static specialAttack(attacker: any, opponent: any) {
+    if (!AppComponent.canPlay(attacker)) {
+      AppComponent.messages.unshift({
+        type: 1,
+        message: attacker.name + ' não pode jogar!',
+      });
+      return;
+    }
+
+    if (attacker.specialAttackDisabledTurns == 0) {
+      var damage = AppComponent.utils.getRandom(10, 20);
+      opponent.life -= damage;
+
+      AppComponent.messages.unshift({
+        type: 1,
+        message:
+          attacker.name + ' usou o golpe especial: ' + '(' + damage + ')',
+      });
+
+      opponent.isDizzy =
+        AppComponent.utils.getRandom(0, 100) >= 50 ? true : false;
+      attacker.specialAttackDisabledTurns = 2;
+    } else {
+      AppComponent.messages.unshift({
+        type: 1,
+        message: attacker.name + ' ataque especial bloqueado. Perdeu turno.',
+      });
+      attacker.specialAttackDisabledTurns--;
+    }
+  }
 
   static aiCPU(_cpu: any, _player: any, _cpuTurns: any) {
     if (_cpu.isHuman) {
@@ -123,24 +180,9 @@ export class AppComponent {
     }
 
     if (_cpuTurns % 3 == 0) {
-      _cpu.specialAttack(_cpu, _player);
+      AppComponent.specialAttack(_cpu, _player);
     } else {
-      _cpu.basicAttack(_cpu, _player);
-    }
-  }
-
-  static specialAttack(attacker: any, opponent: any) {
-    if (!AppComponent.canPlay(attacker)) {
-      return;
-    }
-
-    if (attacker.specialAttackDisabledTurns == 0) {
-      opponent.life -= AppComponent.utils.getRandom(10, 20);
-      opponent.isDizzy =
-        AppComponent.utils.getRandom(0, 100) >= 50 ? true : false;
-      attacker.specialAttackDisabledTurns = 2;
-    } else {
-      attacker.specialAttackDisabledTurns--;
+      AppComponent.basicAttack(_cpu, _player);
     }
   }
 
@@ -173,6 +215,7 @@ export class AppComponent {
     AppComponent.cpuTurns = 0;
     _player = null;
     _cpu = null;
+    AppComponent.messages.unshift(_player.name + ' desistiu!');
     console.log('O jogador desistiu!');
   }
 }

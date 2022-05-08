@@ -1,1 +1,14 @@
-<p>game-log works!</p>
+<h4>Game Log</h4>
+<div class="container">
+  <div class="message" *ngFor="let message of messages">
+    <p class="bg-info" *ngIf="message.type === 0">
+      {{ message.message }}
+    </p>
+    <p class="bg-primary" *ngIf="message.type === 1">
+      {{ message.message }}
+    </p>
+    <p class="bg-success" *ngIf="message.type === 2">
+      {{ message.message }}
+    </p>
+  </div>
+</div>
