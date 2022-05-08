@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'heal',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HealComponent implements OnInit {
   constructor() {}
-  actionHeal() {}
+  actionHeal() {
+    AppComponent.heal(AppComponent.getPlayer1());
+
+    if (!AppComponent.continuePlaying()) {
+      return;
+    }
+
+    console.log(AppComponent.getPlayer1());
+    console.log(AppComponent.getPlayer2());
+  }
 
   ngOnInit(): void {}
 }

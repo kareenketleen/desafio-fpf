@@ -97,6 +97,15 @@ export class AppComponent {
     return true;
   }
 
+  static heal(player: any) {
+    if (!AppComponent.canPlay(player)) {
+      return;
+    }
+    if (player.life < 100) {
+      player.life += AppComponent.utils.getRandom(5, 15);
+    }
+  }
+
   static jogarCpu() {
     console.log('CPU Joga');
     AppComponent.cpuTurns = AppComponent.cpuTurns + 1;
@@ -120,7 +129,7 @@ export class AppComponent {
     }
   }
 
-  specialAttack(attacker: any, opponent: any) {
+  static specialAttack(attacker: any, opponent: any) {
     if (!AppComponent.canPlay(attacker)) {
       return;
     }
@@ -158,4 +167,12 @@ export class AppComponent {
   }
 
   static apiCall(_pointsPlayer: number) {}
+
+  static giveUp(_player: any, _cpu: any) {
+    AppComponent.turns = 1;
+    AppComponent.cpuTurns = 0;
+    _player = null;
+    _cpu = null;
+    console.log('O jogador desistiu!');
+  }
 }

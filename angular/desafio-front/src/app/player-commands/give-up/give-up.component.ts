@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { GameModule } from 'src/app/game/game.module';
 
 @Component({
@@ -9,6 +10,9 @@ import { GameModule } from 'src/app/game/game.module';
 export class GiveUpComponent implements OnInit {
   constructor() {}
 
-  actionGiveUp() {}
+  actionGiveUp() {
+    AppComponent.giveUp(AppComponent.getPlayer1(), AppComponent.getPlayer2());
+    console.clear();
+  }
   ngOnInit(): void {}
 }

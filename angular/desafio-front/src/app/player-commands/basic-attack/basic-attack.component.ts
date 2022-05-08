@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { GameModule } from 'src/app/game/game.module';
 
 @Component({
   selector: 'basic-attack',
