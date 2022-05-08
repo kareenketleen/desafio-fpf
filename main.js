@@ -27,3 +27,5 @@
 
 // console.log("basic atacck player 2");
 // console.log(player2);
+
+startGame();

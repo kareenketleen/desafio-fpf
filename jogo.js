@@ -4,6 +4,71 @@ var cpuTurns = 0;
 var player1 = null;
 var player2 = null;
 
+//eventos
+var btnBasicAttack = document.getElementById("btn-basic-attack");
+var btnSpecialAttack = document.getElementById("btn-special-attack");
+var btnHeal = document.getElementById("btn-heal");
+var btnGiveUp = document.getElementById("btn-give-up");
+
+function actionBasicAttack() {
+  basicAttack(player1, player2);
+
+  if (!continuePlaying()) {
+    return;
+  }
+
+  console.log(player1);
+  console.log(player2);
+}
+
+function actionSpecialAttack() {
+  specialAttack(player1, player2);
+
+  if (!continuePlaying()) {
+    return;
+  }
+
+  console.log(player1);
+  console.log(player2);
+}
+function actionHeal() {
+  heal(player1);
+
+  if (!continuePlaying()) {
+    return;
+  }
+
+  console.log(player1);
+  console.log(player2);
+}
+function actionGiveUp() {
+  giveUp(player1, player2);
+  console.clear();
+}
+
+btnBasicAttack.onclick = actionBasicAttack;
+btnSpecialAttack.onclick = actionSpecialAttack;
+btnHeal.onclick = actionHeal;
+btnGiveUp.onclick = actionGiveUp;
+
+function continuePlaying() {
+  if (isPlayerDead(player2)) {
+    winner(player1);
+    return false;
+  }
+
+  turns = turns + 1;
+  jogarCpu();
+
+  if (isPlayerDead(player1)) {
+    winner(player2);
+    return false;
+  }
+
+  turns = turns + 1;
+  return true;
+}
+
 //Starting point (main)
 function startGame() {
   console.log("The game is starting...");
@@ -18,7 +83,6 @@ function startGame() {
   cpuTurns = 0;
 
   console.log("The game has started!");
-  play();
 }
 
 function play() {
@@ -31,20 +95,12 @@ function play() {
   checkFinishGame();
 }
 
-function checkFinishGame() {
-  if (isPlayerDead(player1)) {
-    resultGame(player2);
-  } else if (isPlayerDead(player2)) {
-    resultGame(player1);
-  } else {
-    turns = turns + 1;
-    play();
-  }
-}
+function checkFinishGame() {}
 
 function jogarHumano() {}
 
 function jogarCpu() {
+  console.log("CPU Joga");
   cpuTurns = cpuTurns + 1;
   aiCPU(player2, player1, cpuTurns);
 }
@@ -53,8 +109,9 @@ function heal(player) {
   if (!canPlay(player)) {
     return;
   }
-
-  player.life += getRandom(5, 15);
+  if (player.life < 100) {
+    player.life += getRandom(5, 15);
+  }
 }
 
 function canPlay(player) {
@@ -122,13 +179,13 @@ function giveUp(_player, _cpu) {
 }
 
 function getScore(life, turns) {
-  return (life * 1000) / turns;
+  return Math.floor((life * 1000) / turns);
   //TODO - Call webservice (REST)
 }
 
-function resultGame(_winner) {
+function winner(_winner) {
   console.log("The player " + _winner.name + " won!");
-  console.log(_winner.name + ": " + getScore(_winner) + " points");
+  console.log(_winner.name + ": " + getScore(_winner.life, turns) + " points");
   apiCall(getScore(_winner));
 }
 
