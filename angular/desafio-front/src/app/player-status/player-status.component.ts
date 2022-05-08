@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-player-status',
+  selector: 'player-status',
   templateUrl: './player-status.component.html',
-  styleUrls: ['./player-status.component.css']
+  styleUrls: ['./player-status.component.css'],
 })
 export class PlayerStatusComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

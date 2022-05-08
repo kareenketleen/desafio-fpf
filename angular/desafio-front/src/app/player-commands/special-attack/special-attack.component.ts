@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-special-attack',
+  selector: 'special-attack',
   templateUrl: './special-attack.component.html',
-  styleUrls: ['./special-attack.component.css']
+  styleUrls: ['./special-attack.component.css'],
 })
 export class SpecialAttackComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

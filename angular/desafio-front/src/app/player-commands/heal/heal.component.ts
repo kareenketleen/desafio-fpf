@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-heal',
+  selector: 'heal',
   templateUrl: './heal.component.html',
-  styleUrls: ['./heal.component.css']
+  styleUrls: ['./heal.component.css'],
 })
 export class HealComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

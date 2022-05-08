@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-game-log',
+  selector: 'game-log',
   templateUrl: './game-log.component.html',
-  styleUrls: ['./game-log.component.css']
+  styleUrls: ['./game-log.component.css'],
 })
 export class GameLogComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

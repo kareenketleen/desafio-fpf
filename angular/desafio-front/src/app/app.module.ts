@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { PlayerStatusComponent } from './player-status/player-status.component';
 import { PlayerCommandsComponent } from './player-commands/player-commands.component';
 import { GameLogComponent } from './game-log/game-log.component';
@@ -20,13 +21,10 @@ import { GiveUpComponent } from './player-commands/give-up/give-up.component';
     BasicAttackComponent,
     SpecialAttackComponent,
     HealComponent,
-    GiveUpComponent
+    GiveUpComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

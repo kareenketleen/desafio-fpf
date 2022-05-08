@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-basic-attack',
+  selector: 'basic-attack',
   templateUrl: './basic-attack.component.html',
-  styleUrls: ['./basic-attack.component.css']
+  styleUrls: ['./basic-attack.component.css'],
 })
 export class BasicAttackComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
