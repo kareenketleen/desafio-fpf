@@ -1,3 +1,9 @@
+Front - angular/desafio-front (Angular)
+Back - angular/desafio-back (Node/Express)
+
+
+
+
 Formato do objeto Player - Ranking
 
 ```
