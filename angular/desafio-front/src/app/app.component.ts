@@ -47,6 +47,7 @@ export class AppComponent {
 
     AppComponent.turns = 1;
     AppComponent.cpuTurns = 0;
+    AppComponent.messages = [];
 
     AppComponent.utils = new UtilsModule();
 

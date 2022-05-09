@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.column {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 200px;
+}
+
+p {
+  text-align: center;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 18px;
+}

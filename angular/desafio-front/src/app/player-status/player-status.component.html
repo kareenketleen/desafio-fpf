@@ -1,1 +1,94 @@
-<p>player-status works!</p>
+<div class="container">
+  <div class="column">
+    <p>Player</p>
+    <div class="progress" *ngIf="player1.life >= 50; else nothing">
+      <div
+        class="progress-bar progress-bar-success"
+        role="progressbar"
+        aria-valuenow="40"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [style.width.%]="player1.life"
+      >
+        {{ player1.life }}%
+      </div>
+    </div>
+    <ng-template #nothing></ng-template>
+
+    <div
+      #medium
+      class="progress"
+      *ngIf="player1.life < 50 && player1.life >= 20; else nothing"
+    >
+      <div
+        class="progress-bar progress-bar-warning"
+        role="progressbar"
+        aria-valuenow="60"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [style.width.%]="player1.life"
+      >
+        {{ player1.life }}%
+      </div>
+    </div>
+
+    <div class="progress" *ngIf="player1.life < 20; else nothing">
+      <div
+        class="progress-bar progress-bar-danger"
+        role="progressbar"
+        aria-valuenow="40"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [style.width.%]="player1.life"
+      >
+        {{ player1.life }}%
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <p>CPU</p>
+    <div class="progress" *ngIf="player2.life >= 50; else nothing">
+      <div
+        class="progress-bar progress-bar-success"
+        role="progressbar"
+        aria-valuenow="40"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [style.width.%]="player2.life"
+      >
+        {{ player2.life }}%
+      </div>
+    </div>
+    <ng-template #nothing></ng-template>
+
+    <div
+      #medium
+      class="progress"
+      *ngIf="player2.life < 50 && player2.life >= 20; else nothing"
+    >
+      <div
+        class="progress-bar progress-bar-warning"
+        role="progressbar"
+        aria-valuenow="60"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [style.width.%]="player2.life"
+      >
+        {{ player2.life }}%
+      </div>
+    </div>
+
+    <div class="progress" *ngIf="player2.life < 20; else nothing">
+      <div
+        class="progress-bar progress-bar-danger"
+        role="progressbar"
+        aria-valuenow="40"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [style.width.%]="player2.life"
+      >
+        {{ player2.life }}%
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,10 +11,6 @@ export class GameLogComponent implements OnInit {
     return AppComponent.messages;
   }
 
-  static updateMessages() {
-    AppComponent.messages = GameLogComponent.getMessages();
-  }
-
   messages: any = GameLogComponent.getMessages();
 
   constructor() {
