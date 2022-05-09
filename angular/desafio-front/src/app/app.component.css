@@ -7,3 +7,16 @@ section {
   display: flex;
   justify-content: space-around;
 }
+
+.container-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 5px;
+}

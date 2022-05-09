@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { PlayerStatusComponent } from './player-status/player-status.component';
 import { PlayerCommandsComponent } from './player-commands/player-commands.component';
@@ -11,6 +12,7 @@ import { BasicAttackComponent } from './player-commands/basic-attack/basic-attac
 import { SpecialAttackComponent } from './player-commands/special-attack/special-attack.component';
 import { HealComponent } from './player-commands/heal/heal.component';
 import { GiveUpComponent } from './player-commands/give-up/give-up.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { GiveUpComponent } from './player-commands/give-up/give-up.component';
     SpecialAttackComponent,
     HealComponent,
     GiveUpComponent,
+    RankingComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
