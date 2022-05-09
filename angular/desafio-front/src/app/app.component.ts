@@ -199,9 +199,30 @@ export class AppComponent {
         AppComponent.getScore(_winner.life, AppComponent.turns) +
         ' points'
     );
+
+    var playerName: string = '';
+
+    if (_winner.isHuman) {
+      var textoPrompt: string = 'The ' + _winner.name + ' won!\n';
+      textoPrompt +=
+        'Score: ' +
+        AppComponent.getScore(_winner.life, AppComponent.turns) +
+        ' points\n';
+      textoPrompt += 'Escreva seu nome!';
+
+      if (prompt(textoPrompt) == null) {
+        playerName = 'anonymous';
+      }
+    } else {
+      playerName = 'CPU';
+    }
+
     AppComponent.apiCall(
+      playerName,
       AppComponent.getScore(_winner.life, AppComponent.turns)
     );
+
+    window.location.reload();
   }
 
   static getScore(life: number, turns: number) {
@@ -209,7 +230,7 @@ export class AppComponent {
     //TODO - Call webservice (REST)
   }
 
-  static apiCall(_pointsPlayer: number) {}
+  static apiCall(name: string = 'anonymous', _pointsPlayer: number) {}
 
   static giveUp(_player: any, _cpu: any) {
     AppComponent.turns = 1;
